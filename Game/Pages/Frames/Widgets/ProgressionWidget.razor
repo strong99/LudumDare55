@@ -1,0 +1,18 @@
+﻿@using LDJam55.Game.Services
+
+<div class="widget progression">
+    <ul class="frames">
+        @foreach (var level in Model.Frames) {
+            <li @key="@level.Id" id="progressBar_@(level.Id)" class="@(level.Id == Model.ActiveFrameId ? "active" : "") @(level.Id) @(level.Repeatable ? "repeatable" : "") @(level.Unlocked ? "unlocked" : "locked") @(level.Type) @(String.Join(' ', level.Tags))" title="@level.Id">
+                @if (level.Unlocked && level.Repeatable) {
+                    <button title="Go to @level.Id, @level.Type" @onclick="()=>Selected?.Invoke(level.Id)"></button>
+                }
+            </li>
+        }
+    </ul>
+</div>
+
+@code {
+    [Parameter] public required Action<String>? Selected { get; set; }
+    [Parameter] public required ProgressionWidgetModel Model { get; set; } 
+}

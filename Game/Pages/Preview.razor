@@ -1,0 +1,86 @@
+﻿@page "/preview"
+@using LDJam55.Game.Models
+
+<PageTitle>World Preview</PageTitle>
+
+<div id="gamePage" class="view game preview">
+    <div class="panel frames">
+        <header>
+            <h1>Frames</h1>
+        </header>
+        <ul>
+            @foreach (var frame in Frames) {
+                if (frame is Invisible) {
+                    continue;
+                }
+
+                <li class="@(frame.Id == ActiveFrameId ? "active" : "") @(frame.Line?.Revistable == true ? "repeatable" : "") @(frame.Line?.GetType().Name)">
+                    <input type="checkbox" @onclick="()=>Toggle(frame.Id)" checked="@SessionRepository.Session.FrameLineIds.Contains(frame.Id)" />
+                    <button @onclick="async ()=>await SelectFrame(frame.Id)" disabled="@_isBussy">@frame.Id</button>
+                </li>
+            }
+        </ul>
+    </div>
+
+    @{
+        var layer3 = OuterFrames.ToArray();
+        var layer2 = OuterFrames.ToArray();
+        var layer1 = OuterFrames.ToArray();
+        var layerMain = OuterFrames.ToArray();
+        var layerFront = OuterFrames.ToArray();
+    }
+    <div class="layer back3">
+        @foreach (var visibleFrame in layer3) {
+            var props = visibleFrame.Props.Where(p => p is not IsLayeredTag lt || lt.Layer == "back3").ToArray();
+            <LDJam55.Game.Pages.Renderer.FrameVisual @key="@($"back3-{visibleFrame.Id}")" Frame="visibleFrame" Layer="back3">
+                @foreach (var prop in props) {
+                    <div class="decoration @prop.Id @(String.Join(' ', prop.Tags))"></div>
+                }
+            </LDJam55.Game.Pages.Renderer.FrameVisual>
+        }
+    </div>
+    <div class="layer back2">
+        @foreach (var visibleFrame in layer2) {
+            var props = visibleFrame.Props.Where(p => p is not IsLayeredTag lt || lt.Layer == "back2").ToArray();
+            <LDJam55.Game.Pages.Renderer.FrameVisual @key="@($"back2-{visibleFrame.Id}")" Frame="visibleFrame" Layer="back2">
+                @foreach (var prop in props) {
+                    <div class="decoration @prop.Id @(String.Join(' ', prop.Tags))"></div>
+                }
+            </LDJam55.Game.Pages.Renderer.FrameVisual>
+        }
+    </div>
+    <div class="layer back1">
+        @foreach (var visibleFrame in layer1) {
+            var props = visibleFrame.Props.Where(p => p is not IsLayeredTag lt || lt.Layer == "back1").ToArray();
+            <LDJam55.Game.Pages.Renderer.FrameVisual @key="@($"back1-{visibleFrame.Id}")" Frame="visibleFrame" Layer="back1">
+                @foreach (var prop in props) {
+                    <div class="decoration @prop.Id @(String.Join(' ', prop.Tags))"></div>
+                }
+            </LDJam55.Game.Pages.Renderer.FrameVisual>
+        }
+    </div>
+    <div class="layer main">
+        @foreach (var visibleFrame in layerMain) {
+            var props = visibleFrame.Props.Where(p => p is not IsLayeredTag lt || lt.Layer == "main").ToArray();
+            <LDJam55.Game.Pages.Renderer.FrameVisual @key="@($"main-{visibleFrame.Id}")" Frame="visibleFrame" Layer="main">
+                @foreach (var prop in props) {
+                    <div class="decoration @prop.Id @(String.Join(' ', prop.Tags))"></div>
+                }
+            </LDJam55.Game.Pages.Renderer.FrameVisual>
+        }
+    </div>
+    <div class="layer front">
+        @foreach (var visibleFrame in layerFront) {
+            var props = visibleFrame.Props.Where(p => p is not IsLayeredTag lt || lt.Layer == "front").ToArray();
+            <LDJam55.Game.Pages.Renderer.FrameVisual @key="@($"front-{visibleFrame.Id}")" Frame="visibleFrame" Layer="front">
+                @foreach (var prop in props) {
+                    <div class="decoration @prop.Id @(String.Join(' ', prop.Tags))"></div>
+                }
+            </LDJam55.Game.Pages.Renderer.FrameVisual>
+        }
+    </div>
+
+    <div class="ui bar">
+        <a class="goToMenu" href="./" title="Open the menu">&#9776;</a>
+    </div>
+</div>

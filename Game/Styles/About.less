@@ -1,0 +1,102 @@
+div#aboutPage {
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    place-content: safe end;
+    place-items: safe end;
+
+    > div.panel {
+        max-width: 30em;
+        display: flex;
+        flex-direction: column;
+        padding: 0.5em;
+        margin: 1.5em;
+        border: 5px solid white;
+        background: white;
+        position: relative;
+
+        &:after {
+            box-sizing: border-box;
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid black;
+            pointer-events: none;
+        }
+
+        > header {
+            border-bottom: 1px solid black;
+            margin-bottom: 0.75em;
+
+            > h1 {
+                margin-top: 0.1em;
+                margin-bottom: 0.2em;
+            }
+        }
+
+        a:not([target="_new"]), button {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            background: transparent;
+            text-align: center;
+            border: none;
+            padding: 0.5em;
+            color: black;
+            cursor: pointer;
+
+            &:hover, &:active, &:focus-visible {
+                background-color: rgba(0,0,0,0.1);
+            }
+        }
+
+        > p {
+            margin: 0;
+        }
+
+        > p + p {
+            margin-top: 1.5em;
+        }
+
+        > ul.tools {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+            padding-left: 0.5em;
+            margin: 0;
+            margin-bottom: 1em;
+
+            > li {
+                display: flex;
+                flex-direction: column;
+                
+                > span {
+                    &:after {
+                        content: ':';
+                    }
+                }
+
+                @media screen and (min-width: 30em) {
+                    flex-direction: row;
+                    place-items: center;
+
+                    &:before {
+                        content: '-';
+                        margin-right: 0.5em;
+                    }
+
+                    > span {
+                        min-width: 12em;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,711 @@
+div#gamePage {
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+    gap: 0;
+    background: linear-gradient(#82c3fb, #aaddff, white, #82c3fb);
+
+    .frame:not(.Checkpoint) {
+        > h1, > h2, > h3 {
+            display: none;
+        }
+    }
+
+    div.ui.bar {
+        position: absolute;
+        right: 0.5em;
+        top: 0.5em;
+        display: flex;
+        flex-direction: row;
+        gap: 0.5em;
+
+        a, button {
+            padding: 0.5em;
+            text-decoration: none;
+            background: white;
+            border: 1px solid black;
+            color: black;
+            height: 2em;
+            width: 2em;
+            display: flex;
+            font-size: 1.25em;
+            flex-direction: column;
+            place-content: center;
+            place-items: center;
+            text-align: center;
+
+            &:hover {
+                font-weight: bolder;
+                background-size: 80%;
+            }
+        }
+
+        .goToEquipment {
+            background-image: url(../wwwroot/Icons/equipment.svg);
+            background-size: 70%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+
+    div.innerFrame.Battle,
+    div.frame.Battle {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75em;
+        height: 40em;
+        min-height: 100%;
+        min-width: 100%;
+    }
+
+    div.frame.Battle {
+
+        h1, h2, h3 {
+            margin: 0;
+        }
+
+        ul, p {
+            margin: 0;
+        }
+
+        ul.damage.events {
+            > li {
+                color: #ea7979;
+                background-image: none;
+            }
+        }
+
+        ul.special.events {
+            > li {
+                animation: specialEvents 10s linear;
+                height: 0;
+                opacity: 0;
+            }
+        }
+    }
+
+    div.widget.progression {
+        border-radius: 0.25em;
+        border: 1px solid black;
+        overflow: hidden;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+
+        ul {
+            flex-shrink: 0;
+            flex-grow: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+
+            > li {
+                width: 1em;
+                height: 1em;
+                flex-shrink: 0;
+                flex-grow: 0;
+                display: flex;
+                place-content: center;
+                place-items: center;
+                background: #ea7979;
+                border-right: 1px solid black;
+
+                > button {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    place-content: center;
+                    place-items: center;
+                    border: none;
+                }
+
+                &:not(.unlocked) {
+                    cursor: not-allowed;
+                }
+
+                &.unlocked:not(.repeatable) {
+                    background: #bbe0b3;
+                }
+
+                &.unlocked.repeatable > button {
+                    background: green;
+                }
+
+                &.active,
+                &.active > button {
+                    background: yellow;
+                }
+
+                &:last-child {
+                    border-right: none;
+                }
+
+                &.Checkpoint {
+                    &.repeatable > button:after,
+                    &:not(.repeatable):after,
+                    &.locked:after {
+                        content: 'c';
+                    }
+                }
+
+                &.Battle {
+                    &.repeatable > button:after,
+                    &:not(.repeatable):after,
+                    &.locked:after {
+                        content: 'b';
+                    }
+                }
+            }
+        }
+    }
+
+    div.widget.time {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        > div.mainbar {
+            position: relative;
+            border: 1px solid black;
+            border-radius: 0.25em;
+            height: 1.5em;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            place-content: center;
+            place-items: center;
+            background: #bbe0b3;
+            overflow: hidden;
+
+            > div.barfilling {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 50%;
+                background: #ea7979;
+                z-index: 0;
+            }
+
+            .time .minutes:after {
+                content: ':';
+            }
+
+            > * {
+                z-index: 1;
+            }
+        }
+    }
+
+    ul.tasks {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 0.5em;
+
+        > li {
+            padding: 0.5em;
+            border-radius: 0.5em;
+            border: 1px solid black;
+            background: white;
+
+            h3 {
+                margin: 0;
+                border-bottom: 1px solid black;
+                margin-bottom: 0.25em;
+            }
+
+            div.widget.time {
+                .barfilling {
+                    background-color: #bbe0b3;
+                }
+
+                .mainbar {
+                    background-color: #ea7979;
+                }
+            }
+
+            > p {
+                margin: 0.1em 0;
+                display: flex;
+
+                > span:first-child {
+                    min-width: 6em;
+                }
+
+                > span:first-child:after {
+                    content: ': ';
+                    margin-right: 0.5em;
+                }
+            }
+        }
+    }
+
+    button.next {
+        position: absolute;
+        bottom: 1em;
+        right: 1em;
+        padding: 0.5em 0.75em;
+        background: white;
+        border: 1px solid black;
+
+        &:hover {
+            background: #eee;
+            font-weight: bolder;
+        }
+    }
+
+    menu {
+        position: absolute;
+        bottom: 1em;
+        right: 1em;
+        display: flex;
+        flex-direction: row;
+        gap: 1.5em;
+        place-content: center;
+        place-items: center;
+        padding: 0;
+        margin: 0;
+
+        button {
+            padding: 0.5em 0.75em;
+            background: white;
+            border: 1px solid black;
+
+            &:hover {
+                background: #eee;
+                font-weight: bolder;
+            }
+        }
+    }
+
+    .layer.ui .frame,
+    .layer.ui .innerFrame {
+        width: 90%;
+        max-width: 30em;
+        pointer-events: none;
+    }
+
+    .layer.ui .innerFrame {
+        display: flex;
+        flex-direction: column;
+        padding: 0.5em;
+        padding-top: 1em;
+        overflow: auto;
+        gap: 0.5em;
+
+        > * {
+            width: 100%;
+        }
+
+        button.next {
+            width: auto;
+        }
+    }
+
+    p.output {
+        position: absolute;
+        bottom: 1.75em;
+        background: rgba(0,0,0,0.2);
+        padding: 0.5em 0.75em;
+        width: 100%;
+
+        span.actor {
+            margin-right: 0.75em;
+            font-weight: bolder;
+
+            &:after {
+                content: ': ';
+            }
+        }
+    }
+
+    ul.events {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        gap: 0.5em;
+
+        > li {
+            border: 1px solid black;
+            background: white;
+            padding: 0.5em 0.75em;
+            opacity: 0;
+            visibility: collapse;
+            animation: specialEvents 10s linear;
+            height: 0;
+            overflow: hidden;
+            min-width: 10em;
+
+            > p {
+                margin: 0;
+            }
+        }
+    }
+
+    .Battle ul.allies {
+        position: absolute;
+        bottom: 10dvh;
+        left: 10dvh;
+
+        > li {
+            position: relative;
+
+            > ul.damage.events {
+                li {
+                    position: absolute;
+                    visibility: collapse;
+                    opacity: 0;
+                    animation: damageEvent 2s linear;
+                }
+            }
+        }
+    }
+
+    .Battle ul.enemies {
+        position: absolute;
+        bottom: 10dvh;
+
+        > li {
+            position: relative;
+
+            > ul.damage.events {
+                position: relative;
+                bottom: 20dvh;
+
+                li {
+                    display: block;
+                    position: absolute;
+                    bottom: 100%;
+                    opacity: 0;
+                    animation: damageEvent 2s linear;
+                    width: 10em;
+                    border: none;
+                    background: none;
+                    font-weight: bolder;
+                    transform: translateX(-50%);
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .Checkpoint {
+        gap: 0.5em;
+    }
+
+    ul.allies > li.ally:has(button:hover) > div.popup {
+        left: 100%;
+    }
+
+    #AllyEquipment,
+    ul.allies > li.ally:has(button:hover) > div.popup {
+        > ul > li > p:before {
+            content: '';
+            display: inline-block;
+            background-image: url(../wwwroot/Icons/sword.svg);
+            height: 1.2em;
+            width: 1.2em;
+            margin-right: 0.25em;
+        }
+    }
+
+    ul.enemies > li.enemy:has(button:hover) > div.popup {
+        right: 100%;
+
+        > ul > li > p:before {
+            content: '';
+            display: inline-block;
+            background-image: url(../wwwroot/Icons/shield.svg);
+            height: 1.2em;
+            width: 1.2em;
+            margin-right: 0.25em;
+        }
+    }
+
+    ul.allies > li.ally:has(button:hover) > div.popup,
+    ul.enemies > li.enemy:has(button:hover) > div.popup {
+        background-color: white;
+        border: 1px solid black;
+        display: block;
+        position: absolute;
+        bottom: 0;
+        padding: 0.5em 0.75em;
+
+        > p {
+            font-weight: bolder;
+            border-bottom: 1px solid black;
+            margin-top: 0;
+            margin-bottom: 0.25em;
+        }
+    }
+
+    ul.stats {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        padding: 0;
+        list-style: none;
+
+        > li {
+            > p {
+                display: flex;
+                flex-direction: row;
+                margin: 0;
+
+                > span:first-child {
+                    display: block;
+                    width: 6em;
+                    font-weight: bolder;
+
+                    &:after {
+                        content: ": ";
+                        margin-right: 0.5em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+div#EquipmentPanel {
+    background: white;
+    place-self: center;
+    margin: 0 auto;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    pointer-events: auto;
+
+    header {
+        display:flex;
+        flex-direction: row-reverse;
+        border-bottom: 1px solid black;
+        gap:0.5em;
+
+        > button.return {
+            border: 1px solid black;
+            padding: 0.5em;
+            background: transparent;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            width: 2em;
+            height: 2em;
+            text-align: center;
+            display: flex;
+            place-content: center;
+            place-items: center;
+
+            &:hover {
+                font-weight: bolder;
+            }
+
+            &:before {
+                content: '\2A09';
+            }
+        }
+
+        h1, h2, h3 {
+            margin: 0;
+            border: none;
+            width:100%;
+        }
+    }
+
+    ul.allies {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        width: 100%;
+
+        > li {
+            width: 100%;
+
+            > button {
+                border: 1px solid black;
+                border-radius: 0.5em;
+                padding: 0.5em;
+                min-width: 10em;
+                width: 100%;
+                text-align: left;
+                background: white;
+
+                &.active {
+                    background: rgba(0,0,0,0.1);
+                }
+
+                &:focus {
+                    font-weight: bolder;
+                }
+            }
+        }
+    }
+
+    ul.equipmentList {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5em;
+
+        > li {
+            border: 1px solid black;
+            background: rgba(0,0,0,0.1);
+            border-radius: 5px;
+            width: 4.9em;
+            height: 5.9em;
+            padding: 0.2em;
+            display: flex;
+            flex-direction: column;
+            place-content: safe center;
+            place-items: safe center;
+            text-align: center;
+            cursor: pointer;
+
+            &.active {
+                background: #222;
+                color: white;
+            }
+
+            &:hover {
+                font-weight: bolder;
+            }
+
+            div.equipment {
+                border: 1px solid black;
+                background: white;
+                border-radius: 5px;
+                color: black;
+                padding: 0.5em;
+                width: 4em;
+                height: 4em;
+                overflow: hidden;
+            }
+        }
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5em;
+    }
+
+    .avatar {
+        flex-shrink: 0;
+        flex-grow: 0;
+        display: block;
+        width: 14dvh;
+        height: 14dvh;
+        border: 1px solid black;
+        background-repeat: no-repeat;
+        background-size: cover;
+        transform: scaleX(-1);
+    }
+
+    form {
+        display: flex;
+        flex-direction: row;
+
+        > input {
+            width: 100%;
+            border: 1px solid black;
+            border-right: none;
+        }
+
+        > button {
+            border: 1px solid black;
+        }
+
+        > input, button {
+            padding: 0.5em 0.75em;
+        }
+    }
+
+    #Inventory {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+    }
+}
+
+@keyframes damageEvent {
+    0% {
+        height: fit-content;
+        visibility: visible;
+        opacity: 1;
+        bottom: 0dvh;
+    }
+
+    25% {
+        height: fit-content;
+        visibility: visible;
+        opacity: 1;
+        bottom: 2dvh;
+    }
+
+    100% {
+        height: fit-content;
+        visibility: visible;
+        opacity: 1;
+        bottom: 8dvh;
+    }
+}
+
+
+@keyframes specialEvents {
+    0% {
+        height: fit-content;
+        visibility: visible;
+        opacity: 1;
+        background-image: linear-gradient(90deg, #c3dff3, #e5f4fe, #99bfdb, #c3dff3);
+        background-size: 200%;
+        background-position: 0 0;
+    }
+
+    10% {
+        height: fit-content;
+        visibility: visible;
+        opacity: 1;
+        background-image: linear-gradient(90deg, #c3dff3, #e5f4fe, #99bfdb, #c3dff3);
+        background-size: 200%;
+        background-position: 400% 0;
+    }
+    11% {
+        height: fit-content;
+        visibility: visible;
+        opacity: 1;
+        background-image: none;
+    }
+
+    75% {
+        height: fit-content;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    99% {
+        height: fit-content;
+        visibility: visible;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: collapse;
+    }
+}

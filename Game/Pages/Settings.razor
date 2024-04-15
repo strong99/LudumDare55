@@ -1,0 +1,32 @@
+﻿@page "/settings"
+@using LDJam55.Game.Pages.Renderer
+
+<PageTitle>Settings - The King's Summoning - Ludum Dare 55</PageTitle>
+
+<div id="settingsPage" class="page settings">
+    <Cover/>
+
+    <form class="panel">
+        <header>
+            <h1>Settings</h1>
+        </header>
+
+        <label>
+            <span class="label">Music volume</span>
+            <input type="range" min="0" max="100" step="5" @bind="MusicVolume" />
+            <span class="control percentage">
+                <input type="number" min="0" max="100" step="1" @bind="MusicVolume" />
+            </span>
+        </label>
+
+        <label>
+            <span class="label">Other volume</span>
+            <input type="range" min="0" max="100" step="5" @bind="OtherVolume" />
+            <span class="control percentage">
+                <input type="number" min="0" max="100" step="1" @bind="OtherVolume" />
+            </span>
+        </label>
+
+        <a href="./">Return</a>
+    </form>
+</div>

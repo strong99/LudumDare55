@@ -1,0 +1,77 @@
+﻿@using LDJam55.Game.Models
+@using LDJam55.Game.Pages.Frames.Widgets
+@using LDJam55.Game.Services
+<div class="innerFrame @Frame.Path @FrameTypeName" id="Checkpoint-@(Frame.Path)">
+</div>
+
+<Microsoft.AspNetCore.Components.Sections.SectionContent SectionId="Game.UiSectionId">
+    <div class="innerFrame @FrameTypeName @(nameof(Checkpoint))" id="Checkpoint-@(Frame.Path)">
+        <ProgressionWidget Model="Frame.ProgressionWidget" Selected="GoTo" />
+        <TimeWidget Model="Frame.TimeWidgetModel" Summary="Reach the capital in {0}" />
+
+        <div class="panel">
+            <header>
+                <h1>@Frame.Path</h1>
+            </header>
+
+            <ul class="tasks">
+                <li>
+                    <h3>Manage equipment</h3>
+                    <button @onclick="ShowEquipment">Equipment</button>
+                </li>
+                @foreach (var task in Frame.Tasks) {
+                    <li @key="task">
+                        @if (task is Training training) {
+                            <h3>Training</h3>
+                            <p class="stats"><span>Stat</span><span>@training.Type</span></p>
+                            <p class="stats"><span>Increase</span><span>x@(training.Multiplier)</span></p>
+                        }
+                        else if (task is Recruit recruit) {
+                            <h3>Recruit</h3>
+                            <p class="stats"><span>Who</span><span>@recruit.Ally.Id</span></p>
+                        }
+                        <p class="duration"><span>Duration</span><span>@((task.DurationMs / 1000.0f).ToString("0"))s</span></p>
+                        <p class="chance"><span>Chance</span><span>@((task.Chance * 100).ToString("0"))%</span></p>
+                        @if (Frame.ActiveTask == task && Frame.Countdown is not null) {
+                            <LDJam55.Game.Pages.Frames.Widgets.TimeWidget Model="Frame.Countdown" />
+                        }
+                        else {
+                            <button disabled="@(!Frame.CanDoNext)" @onclick="()=>Do(task)">Start</button>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <ul class="events">
+            @foreach (var e in SpecialEvents) {
+                <li @key="e.When">
+                    @if (e is TrainingSpecialEvent trainingSpecialEvent) {
+                        if (trainingSpecialEvent.Ally is not null && trainingSpecialEvent.Success) {
+                            <p>Finished training @trainingSpecialEvent.Ally.Id</p>
+                        }
+                        else if (trainingSpecialEvent.Ally is not null) {
+                            <p>Failed to train @trainingSpecialEvent.Ally.Id</p>
+                        }
+                        else {
+                            <p>Failed to train anyone</p>
+                        }
+                    }
+                    else if (e is RecruitedSpecialEvent recruitSpecialEvent) {
+                        if (recruitSpecialEvent.Success) {
+                            <p>Recruited @recruitSpecialEvent.Task.Ally.Id to the team!</p>
+                        }
+                        else {
+                            <p>Failed to recruit @recruitSpecialEvent.Task.Ally.Id</p>
+                        }
+                    }
+                    else {
+                        <p>Unknown event</p>
+                    }
+                </li>
+            }
+        </ul>
+
+        <button class="next" disabled="@(!Frame.CanDoNext)" @onclick="Next">Next</button>
+    </div>
+</Microsoft.AspNetCore.Components.Sections.SectionContent>

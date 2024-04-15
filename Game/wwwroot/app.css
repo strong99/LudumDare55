@@ -1,0 +1,1401 @@
+﻿@layer baseLayer {
+  html,
+  body {
+    font-family: Consolas, Monaco, monospace, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  h1:focus {
+    outline: none;
+  }
+  a,
+  .btn-link {
+    color: #0071c1;
+  }
+  .btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+  }
+  .btn:focus,
+  .btn:active:focus,
+  .btn-link.nav-link:focus,
+  .form-control:focus,
+  .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+  }
+  .content {
+    padding-top: 1.1rem;
+  }
+  .valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+  }
+  .invalid {
+    outline: 1px solid red;
+  }
+  .validation-message {
+    color: red;
+  }
+  #blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+  }
+  #blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+  }
+  .blazor-error-boundary {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
+    padding: 1rem 1rem 1rem 3.7rem;
+    color: white;
+  }
+  .blazor-error-boundary::after {
+    content: "An error has occurred.";
+  }
+  .loading-progress {
+    position: relative;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    margin: 20vh auto 1rem auto;
+  }
+  .loading-progress circle {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 0.6rem;
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+  }
+  .loading-progress circle:last-child {
+    stroke: #1b6ec2;
+    stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+    transition: stroke-dasharray 0.05s ease-in-out;
+  }
+  .loading-progress-text {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+  }
+  .loading-progress-text:after {
+    content: var(--blazor-load-percentage-text, "Loading");
+  }
+  code {
+    color: #c02d76;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  html,
+  body,
+  div#app {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+  a,
+  button,
+  input {
+    font-family: inherit;
+    font-size: inherit;
+  }
+  a:not([target="_new"]),
+  button {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+  }
+  a:not([target="_new"]).disabled,
+  button.disabled,
+  a:not([target="_new"])[disabled],
+  button[disabled] {
+    color: gray;
+  }
+  a[target="_new"]:hover,
+  a[target="_new"]:active,
+  a[target="_new"]:focus-visible {
+    font-weight: bolder;
+  }
+  .panel {
+    margin: 0;
+    margin-top: 0.25em;
+    padding: 0.5em;
+    background-color: white;
+    border: 1px solid black;
+    box-shadow: white -0.25em -0.25em 0, white -0.25em 0.25em 0, white 0.25em 0.25em 0, white 0.25em -0.25em 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+  .panel > header {
+    border-bottom: 1px solid black;
+  }
+  .panel > header h1,
+  .panel > header h2,
+  .panel > header h3 {
+    margin: 0;
+  }
+  div.page {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background: linear-gradient(#82c3fb, #aaddff, white, #82c3fb);
+  }
+  div.page > .layer {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 110dvw;
+    height: 110dvh;
+    transform: translateX(-5dvw);
+    left: 0;
+    top: -5dvh;
+  }
+  div.page > .layer.cover.back3 {
+    background-image: url(CoverBack3.svg);
+  }
+  div.page > .layer.cover.back2 {
+    background-image: url(CoverBack2.svg);
+  }
+  div.page > .layer.cover.back1 {
+    background-image: url(CoverBack1.svg);
+  }
+  div.page > .layer.cover.main {
+    background-image: url(CoverMain.svg);
+  }
+  div.page > .layer.cover.front {
+    background-image: url(CoverFront.svg);
+  }
+  div#startPage {
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    place-content: safe end;
+    place-items: safe end;
+  }
+  div#startPage > menu {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    margin: 1.5em;
+    border: 3px solid white;
+    background: white;
+    position: relative;
+  }
+  div#startPage > menu:after {
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    pointer-events: none;
+  }
+  div#startPage > menu > header {
+    border-bottom: 1px solid black;
+    margin-bottom: 0.75em;
+  }
+  div#startPage > menu > header > h1 {
+    margin-top: 0.1em;
+    margin-bottom: 0.2em;
+  }
+  div#startPage > menu > a,
+  div#startPage > menu button {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    background: transparent;
+    text-align: center;
+    border: none;
+    padding: 0.5em;
+  }
+  div#startPage > menu > a:hover,
+  div#startPage > menu button:hover,
+  div#startPage > menu > a:active,
+  div#startPage > menu button:active,
+  div#startPage > menu > a:focus-visible,
+  div#startPage > menu button:focus-visible {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  div#startPage > menu > a.isWorking,
+  div#startPage > menu button.isWorking {
+    background-image: linear-gradient(90deg, #c3dff3, #e5f4fe, #99bfdb, #c3dff3);
+    background-repeat: repeat;
+    background-size: 200% 100%;
+    animation: backgroundMove 2s linear infinite;
+  }
+  @keyframes backgroundMove {
+    0% {
+      background-position: 0% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  div#settingsPage {
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    place-content: safe end;
+    place-items: safe end;
+  }
+  div#settingsPage > form.panel {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    margin: 1.5em;
+    border: 5px solid white;
+    background: white;
+    position: relative;
+  }
+  div#settingsPage > form.panel:after {
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    pointer-events: none;
+  }
+  div#settingsPage > form.panel > header {
+    border-bottom: 1px solid black;
+    margin-bottom: 0.75em;
+  }
+  div#settingsPage > form.panel > header > h1 {
+    margin-top: 0.1em;
+    margin-bottom: 0.2em;
+  }
+  div#settingsPage > form.panel label {
+    display: flex;
+    flex-direction: row;
+    place-items: center;
+    gap: 0.5em;
+    padding: 0.2em;
+  }
+  div#settingsPage > form.panel label .control.percentage {
+    display: flex;
+    flex-direction: row;
+  }
+  div#settingsPage > form.panel label .control.percentage > input,
+  div#settingsPage > form.panel label .control.percentage:after {
+    font-size: inherit;
+    padding: 0.5em;
+    border: 1px solid black;
+    display: flex;
+  }
+  div#settingsPage > form.panel label .control.percentage > input {
+    text-align: right;
+    border-bottom-left-radius: 0.5em;
+    border-top-left-radius: 0.5em;
+    border-right: none;
+    width: 4em;
+    background: transparent;
+  }
+  div#settingsPage > form.panel label .control.percentage > input:focus-visible {
+    outline: none;
+  }
+  div#settingsPage > form.panel label .control.percentage:after {
+    content: '%';
+    border-bottom-right-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    border-left: none;
+    padding-left: 0.1em;
+  }
+  div#settingsPage > form.panel label .control.percentage:has(:focus-visible) {
+    font-weight: bolder;
+    outline: 1px auto;
+    border-radius: 0.5em;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  div#settingsPage > form.panel > a,
+  div#settingsPage > form.panel button {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    background: transparent;
+    text-align: center;
+    border: none;
+    padding: 0.5em;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  div#settingsPage > form.panel > a:hover,
+  div#settingsPage > form.panel button:hover,
+  div#settingsPage > form.panel > a:active,
+  div#settingsPage > form.panel button:active,
+  div#settingsPage > form.panel > a:focus-visible,
+  div#settingsPage > form.panel button:focus-visible {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  div#aboutPage {
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    place-content: safe end;
+    place-items: safe end;
+  }
+  div#aboutPage > div.panel {
+    max-width: 30em;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    margin: 1.5em;
+    border: 5px solid white;
+    background: white;
+    position: relative;
+  }
+  div#aboutPage > div.panel:after {
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    pointer-events: none;
+  }
+  div#aboutPage > div.panel > header {
+    border-bottom: 1px solid black;
+    margin-bottom: 0.75em;
+  }
+  div#aboutPage > div.panel > header > h1 {
+    margin-top: 0.1em;
+    margin-bottom: 0.2em;
+  }
+  div#aboutPage > div.panel a:not([target="_new"]),
+  div#aboutPage > div.panel button {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    background: transparent;
+    text-align: center;
+    border: none;
+    padding: 0.5em;
+    color: black;
+    cursor: pointer;
+  }
+  div#aboutPage > div.panel a:not([target="_new"]):hover,
+  div#aboutPage > div.panel button:hover,
+  div#aboutPage > div.panel a:not([target="_new"]):active,
+  div#aboutPage > div.panel button:active,
+  div#aboutPage > div.panel a:not([target="_new"]):focus-visible,
+  div#aboutPage > div.panel button:focus-visible {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  div#aboutPage > div.panel > p {
+    margin: 0;
+  }
+  div#aboutPage > div.panel > p + p {
+    margin-top: 1.5em;
+  }
+  div#aboutPage > div.panel > ul.tools {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding-left: 0.5em;
+    margin: 0;
+    margin-bottom: 1em;
+  }
+  div#aboutPage > div.panel > ul.tools > li {
+    display: flex;
+    flex-direction: column;
+  }
+  div#aboutPage > div.panel > ul.tools > li > span:after {
+    content: ':';
+  }
+  @media screen and (min-width: 30em) {
+    div#aboutPage > div.panel > ul.tools > li {
+      flex-direction: row;
+      place-items: center;
+    }
+    div#aboutPage > div.panel > ul.tools > li:before {
+      content: '-';
+      margin-right: 0.5em;
+    }
+    div#aboutPage > div.panel > ul.tools > li > span {
+      min-width: 12em;
+    }
+  }
+  div#gamePage {
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+    gap: 0;
+    background: linear-gradient(#82c3fb, #aaddff, white, #82c3fb);
+  }
+  div#gamePage .frame:not(.Checkpoint) > h1,
+  div#gamePage .frame:not(.Checkpoint) > h2,
+  div#gamePage .frame:not(.Checkpoint) > h3 {
+    display: none;
+  }
+  div#gamePage div.ui.bar {
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+  }
+  div#gamePage div.ui.bar a,
+  div#gamePage div.ui.bar button {
+    padding: 0.5em;
+    text-decoration: none;
+    background: white;
+    border: 1px solid black;
+    color: black;
+    height: 2em;
+    width: 2em;
+    display: flex;
+    font-size: 1.25em;
+    flex-direction: column;
+    place-content: center;
+    place-items: center;
+    text-align: center;
+  }
+  div#gamePage div.ui.bar a:hover,
+  div#gamePage div.ui.bar button:hover {
+    font-weight: bolder;
+    background-size: 80%;
+  }
+  div#gamePage div.ui.bar .goToEquipment {
+    background-image: url(Icons/equipment.svg);
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  div#gamePage div.innerFrame.Battle,
+  div#gamePage div.frame.Battle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+    height: 40em;
+    min-height: 100%;
+    min-width: 100%;
+  }
+  div#gamePage div.frame.Battle h1,
+  div#gamePage div.frame.Battle h2,
+  div#gamePage div.frame.Battle h3 {
+    margin: 0;
+  }
+  div#gamePage div.frame.Battle ul,
+  div#gamePage div.frame.Battle p {
+    margin: 0;
+  }
+  div#gamePage div.frame.Battle ul.damage.events > li {
+    color: #ea7979;
+    background-image: none;
+  }
+  div#gamePage div.frame.Battle ul.special.events > li {
+    animation: specialEvents 10s linear;
+    height: 0;
+    opacity: 0;
+  }
+  div#gamePage div.widget.progression {
+    border-radius: 0.25em;
+    border: 1px solid black;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  div#gamePage div.widget.progression ul {
+    flex-shrink: 0;
+    flex-grow: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  div#gamePage div.widget.progression ul > li {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    background: #ea7979;
+    border-right: 1px solid black;
+  }
+  div#gamePage div.widget.progression ul > li > button {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    border: none;
+  }
+  div#gamePage div.widget.progression ul > li:not(.unlocked) {
+    cursor: not-allowed;
+  }
+  div#gamePage div.widget.progression ul > li.unlocked:not(.repeatable) {
+    background: #bbe0b3;
+  }
+  div#gamePage div.widget.progression ul > li.unlocked.repeatable > button {
+    background: green;
+  }
+  div#gamePage div.widget.progression ul > li.active,
+  div#gamePage div.widget.progression ul > li.active > button {
+    background: yellow;
+  }
+  div#gamePage div.widget.progression ul > li:last-child {
+    border-right: none;
+  }
+  div#gamePage div.widget.progression ul > li.Checkpoint.repeatable > button:after,
+  div#gamePage div.widget.progression ul > li.Checkpoint:not(.repeatable):after,
+  div#gamePage div.widget.progression ul > li.Checkpoint.locked:after {
+    content: 'c';
+  }
+  div#gamePage div.widget.progression ul > li.Battle.repeatable > button:after,
+  div#gamePage div.widget.progression ul > li.Battle:not(.repeatable):after,
+  div#gamePage div.widget.progression ul > li.Battle.locked:after {
+    content: 'b';
+  }
+  div#gamePage div.widget.time {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  div#gamePage div.widget.time > div.mainbar {
+    position: relative;
+    border: 1px solid black;
+    border-radius: 0.25em;
+    height: 1.5em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    place-items: center;
+    background: #bbe0b3;
+    overflow: hidden;
+  }
+  div#gamePage div.widget.time > div.mainbar > div.barfilling {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    background: #ea7979;
+    z-index: 0;
+  }
+  div#gamePage div.widget.time > div.mainbar .time .minutes:after {
+    content: ':';
+  }
+  div#gamePage div.widget.time > div.mainbar > * {
+    z-index: 1;
+  }
+  div#gamePage ul.tasks {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0.5em;
+  }
+  div#gamePage ul.tasks > li {
+    padding: 0.5em;
+    border-radius: 0.5em;
+    border: 1px solid black;
+    background: white;
+  }
+  div#gamePage ul.tasks > li h3 {
+    margin: 0;
+    border-bottom: 1px solid black;
+    margin-bottom: 0.25em;
+  }
+  div#gamePage ul.tasks > li div.widget.time .barfilling {
+    background-color: #bbe0b3;
+  }
+  div#gamePage ul.tasks > li div.widget.time .mainbar {
+    background-color: #ea7979;
+  }
+  div#gamePage ul.tasks > li > p {
+    margin: 0.1em 0;
+    display: flex;
+  }
+  div#gamePage ul.tasks > li > p > span:first-child {
+    min-width: 6em;
+  }
+  div#gamePage ul.tasks > li > p > span:first-child:after {
+    content: ': ';
+    margin-right: 0.5em;
+  }
+  div#gamePage button.next {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    padding: 0.5em 0.75em;
+    background: white;
+    border: 1px solid black;
+  }
+  div#gamePage button.next:hover {
+    background: #eee;
+    font-weight: bolder;
+  }
+  div#gamePage menu {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+    place-content: center;
+    place-items: center;
+    padding: 0;
+    margin: 0;
+  }
+  div#gamePage menu button {
+    padding: 0.5em 0.75em;
+    background: white;
+    border: 1px solid black;
+  }
+  div#gamePage menu button:hover {
+    background: #eee;
+    font-weight: bolder;
+  }
+  div#gamePage .layer.ui .frame,
+  div#gamePage .layer.ui .innerFrame {
+    width: 90%;
+    max-width: 30em;
+    pointer-events: none;
+  }
+  div#gamePage .layer.ui .innerFrame {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    padding-top: 1em;
+    overflow: auto;
+    gap: 0.5em;
+  }
+  div#gamePage .layer.ui .innerFrame > * {
+    width: 100%;
+  }
+  div#gamePage .layer.ui .innerFrame button.next {
+    width: auto;
+  }
+  div#gamePage p.output {
+    position: absolute;
+    bottom: 1.75em;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.5em 0.75em;
+    width: 100%;
+  }
+  div#gamePage p.output span.actor {
+    margin-right: 0.75em;
+    font-weight: bolder;
+  }
+  div#gamePage p.output span.actor:after {
+    content: ': ';
+  }
+  div#gamePage ul.events {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    gap: 0.5em;
+  }
+  div#gamePage ul.events > li {
+    border: 1px solid black;
+    background: white;
+    padding: 0.5em 0.75em;
+    opacity: 0;
+    visibility: collapse;
+    animation: specialEvents 10s linear;
+    height: 0;
+    overflow: hidden;
+    min-width: 10em;
+  }
+  div#gamePage ul.events > li > p {
+    margin: 0;
+  }
+  div#gamePage .Battle ul.allies {
+    position: absolute;
+    bottom: 10dvh;
+    left: 10dvh;
+  }
+  div#gamePage .Battle ul.allies > li {
+    position: relative;
+  }
+  div#gamePage .Battle ul.allies > li > ul.damage.events li {
+    position: absolute;
+    visibility: collapse;
+    opacity: 0;
+    animation: damageEvent 2s linear;
+  }
+  div#gamePage .Battle ul.enemies {
+    position: absolute;
+    bottom: 10dvh;
+  }
+  div#gamePage .Battle ul.enemies > li {
+    position: relative;
+  }
+  div#gamePage .Battle ul.enemies > li > ul.damage.events {
+    position: relative;
+    bottom: 20dvh;
+  }
+  div#gamePage .Battle ul.enemies > li > ul.damage.events li {
+    display: block;
+    position: absolute;
+    bottom: 100%;
+    opacity: 0;
+    animation: damageEvent 2s linear;
+    width: 10em;
+    border: none;
+    background: none;
+    font-weight: bolder;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  div#gamePage .Checkpoint {
+    gap: 0.5em;
+  }
+  div#gamePage ul.allies > li.ally:has(button:hover) > div.popup {
+    left: 100%;
+  }
+  div#gamePage #AllyEquipment > ul > li > p:before,
+  div#gamePage ul.allies > li.ally:has(button:hover) > div.popup > ul > li > p:before {
+    content: '';
+    display: inline-block;
+    background-image: url(Icons/sword.svg);
+    height: 1.2em;
+    width: 1.2em;
+    margin-right: 0.25em;
+  }
+  div#gamePage ul.enemies > li.enemy:has(button:hover) > div.popup {
+    right: 100%;
+  }
+  div#gamePage ul.enemies > li.enemy:has(button:hover) > div.popup > ul > li > p:before {
+    content: '';
+    display: inline-block;
+    background-image: url(Icons/shield.svg);
+    height: 1.2em;
+    width: 1.2em;
+    margin-right: 0.25em;
+  }
+  div#gamePage ul.allies > li.ally:has(button:hover) > div.popup,
+  div#gamePage ul.enemies > li.enemy:has(button:hover) > div.popup {
+    background-color: white;
+    border: 1px solid black;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    padding: 0.5em 0.75em;
+  }
+  div#gamePage ul.allies > li.ally:has(button:hover) > div.popup > p,
+  div#gamePage ul.enemies > li.enemy:has(button:hover) > div.popup > p {
+    font-weight: bolder;
+    border-bottom: 1px solid black;
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+  div#gamePage ul.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 0;
+    list-style: none;
+  }
+  div#gamePage ul.stats > li > p {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+  }
+  div#gamePage ul.stats > li > p > span:first-child {
+    display: block;
+    width: 6em;
+    font-weight: bolder;
+  }
+  div#gamePage ul.stats > li > p > span:first-child:after {
+    content: ": ";
+    margin-right: 0.5em;
+  }
+  div#EquipmentPanel {
+    background: white;
+    place-self: center;
+    margin: 0 auto;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    pointer-events: auto;
+  }
+  div#EquipmentPanel header {
+    display: flex;
+    flex-direction: row-reverse;
+    border-bottom: 1px solid black;
+    gap: 0.5em;
+  }
+  div#EquipmentPanel header > button.return {
+    border: 1px solid black;
+    padding: 0.5em;
+    background: transparent;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: 2em;
+    height: 2em;
+    text-align: center;
+    display: flex;
+    place-content: center;
+    place-items: center;
+  }
+  div#EquipmentPanel header > button.return:hover {
+    font-weight: bolder;
+  }
+  div#EquipmentPanel header > button.return:before {
+    content: '\2A09';
+  }
+  div#EquipmentPanel header h1,
+  div#EquipmentPanel header h2,
+  div#EquipmentPanel header h3 {
+    margin: 0;
+    border: none;
+    width: 100%;
+  }
+  div#EquipmentPanel ul.allies {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    width: 100%;
+  }
+  div#EquipmentPanel ul.allies > li {
+    width: 100%;
+  }
+  div#EquipmentPanel ul.allies > li > button {
+    border: 1px solid black;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    min-width: 10em;
+    width: 100%;
+    text-align: left;
+    background: white;
+  }
+  div#EquipmentPanel ul.allies > li > button.active {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  div#EquipmentPanel ul.allies > li > button:focus {
+    font-weight: bolder;
+  }
+  div#EquipmentPanel ul.equipmentList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5em;
+  }
+  div#EquipmentPanel ul.equipmentList > li {
+    border: 1px solid black;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 4.9em;
+    height: 5.9em;
+    padding: 0.2em;
+    display: flex;
+    flex-direction: column;
+    place-content: safe center;
+    place-items: safe center;
+    text-align: center;
+    cursor: pointer;
+  }
+  div#EquipmentPanel ul.equipmentList > li.active {
+    background: #222;
+    color: white;
+  }
+  div#EquipmentPanel ul.equipmentList > li:hover {
+    font-weight: bolder;
+  }
+  div#EquipmentPanel ul.equipmentList > li div.equipment {
+    border: 1px solid black;
+    background: white;
+    border-radius: 5px;
+    color: black;
+    padding: 0.5em;
+    width: 4em;
+    height: 4em;
+    overflow: hidden;
+  }
+  div#EquipmentPanel .row {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+  }
+  div#EquipmentPanel .avatar {
+    flex-shrink: 0;
+    flex-grow: 0;
+    display: block;
+    width: 14dvh;
+    height: 14dvh;
+    border: 1px solid black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: scaleX(-1);
+  }
+  div#EquipmentPanel form {
+    display: flex;
+    flex-direction: row;
+  }
+  div#EquipmentPanel form > input {
+    width: 100%;
+    border: 1px solid black;
+    border-right: none;
+  }
+  div#EquipmentPanel form > button {
+    border: 1px solid black;
+  }
+  div#EquipmentPanel form > input,
+  div#EquipmentPanel form button {
+    padding: 0.5em 0.75em;
+  }
+  div#EquipmentPanel #Inventory {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+  @keyframes damageEvent {
+    0% {
+      height: fit-content;
+      visibility: visible;
+      opacity: 1;
+      bottom: 0dvh;
+    }
+    25% {
+      height: fit-content;
+      visibility: visible;
+      opacity: 1;
+      bottom: 2dvh;
+    }
+    100% {
+      height: fit-content;
+      visibility: visible;
+      opacity: 1;
+      bottom: 8dvh;
+    }
+  }
+  @keyframes specialEvents {
+    0% {
+      height: fit-content;
+      visibility: visible;
+      opacity: 1;
+      background-image: linear-gradient(90deg, #c3dff3, #e5f4fe, #99bfdb, #c3dff3);
+      background-size: 200%;
+      background-position: 0 0;
+    }
+    10% {
+      height: fit-content;
+      visibility: visible;
+      opacity: 1;
+      background-image: linear-gradient(90deg, #c3dff3, #e5f4fe, #99bfdb, #c3dff3);
+      background-size: 200%;
+      background-position: 400% 0;
+    }
+    11% {
+      height: fit-content;
+      visibility: visible;
+      opacity: 1;
+      background-image: none;
+    }
+    75% {
+      height: fit-content;
+      visibility: visible;
+      opacity: 1;
+    }
+    99% {
+      height: fit-content;
+      visibility: visible;
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+      visibility: collapse;
+    }
+  }
+  #gamePage.game.preview .panel.frames {
+    position: absolute;
+    left: 1em;
+    top: 1em;
+    max-height: calc(100dvh - 2em);
+    z-index: 99999;
+    margin: 0;
+  }
+  #gamePage.game.preview .panel.frames > ul {
+    overflow: scroll;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  #gamePage.game.preview .panel.frames > ul > li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+  }
+  #gamePage.game.preview .panel.frames > ul > li.active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  #gamePage.game.preview .panel.frames > ul > li:before {
+    display: block;
+    content: "?";
+  }
+  #gamePage.game.preview .panel.frames > ul > li.Battle:before {
+    content: "B";
+  }
+  #gamePage.game.preview .panel.frames > ul > li.Story:before {
+    content: "S";
+  }
+  #gamePage.game.preview .panel.frames > ul > li.Checkpoint:before {
+    content: "C";
+  }
+  #gamePage.game.preview .panel.frames > ul > li > button {
+    display: block;
+    text-align: left;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 0.25em 0.25em;
+  }
+  #gamePage.game.preview .panel.frames > ul > li > button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    font-weight: bolder;
+  }
+}
+div#gamePage div.frame.visual {
+  height: 100dvh;
+  position: absolute;
+  left: 50%;
+  transition: transform 1s linear;
+  border: none;
+  overflow: visible;
+  transform: translateX(calc(-50% + var(--relative-position) * 99.92%));
+}
+div#gamePage div.layer {
+  position: relative;
+}
+div#gamePage div.layer.back3 > div.frame.visual {
+  aspect-ratio: 9 / 44;
+  pointer-events: none;
+  z-index: 50;
+}
+div#gamePage div.layer.back3 > div.frame.visual > div.decoration.mountain01,
+div#gamePage div.layer.back3 > div.frame.visual > div.decoration.mountain02,
+div#gamePage div.layer.back3 > div.frame.visual > div.decoration:first-child {
+  display: block;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+div#gamePage div.layer.back3 > div.frame.visual > div.decoration.mountain01 {
+  background-image: url(Landscapes/back3-mountain.svg);
+  width: 170vmin;
+  height: 40vmin;
+}
+div#gamePage div.layer.back3 > div.frame.visual > div.decoration.mountain02 {
+  background-image: url(Landscapes/back3-mountain2.svg);
+}
+div#gamePage div.layer.back2 > div.frame.visual {
+  aspect-ratio: 9 / 28;
+  pointer-events: none;
+  z-index: 125;
+}
+div#gamePage div.layer.back2 > div.frame.visual > div.decoration.hill01,
+div#gamePage div.layer.back2 > div.frame.visual > div.decoration.hill02,
+div#gamePage div.layer.back2 > div.frame.visual > div.decoration:first-child {
+  display: block;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: 20dvh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+div#gamePage div.layer.back2 > div.frame.visual > div.decoration.hill01 {
+  background-image: url(Landscapes/back2-mountain.svg);
+  width: 85vmax;
+  height: 20vmax;
+}
+div#gamePage div.layer.back2 > div.frame.visual > div.decoration.hill02 {
+  background-image: url(Landscapes/back2-mountain2.svg);
+  width: 85vmax;
+  height: 10vmax;
+}
+div#gamePage div.layer.back1 > div.frame.visual {
+  aspect-ratio: 9 / 20;
+  pointer-events: none;
+  z-index: 250;
+}
+div#gamePage div.layer.back1 > div.frame.visual > div.decoration.hill01,
+div#gamePage div.layer.back1 > div.frame.visual > div.decoration.hill02,
+div#gamePage div.layer.back1 > div.frame.visual > div.decoration:first-child {
+  display: block;
+  content: "";
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+div#gamePage div.layer.back1 > div.frame.visual > div.decoration.hill01 {
+  background-image: url(Landscapes/back1-hills.svg);
+  width: 160dvh;
+  height: 20dvh;
+  bottom: 15dvh;
+}
+div#gamePage div.layer.back1 > div.frame.visual > div.decoration.hill02town {
+  background-image: url(Landscapes/back1-hillstown.svg);
+  width: 200dvh;
+  height: 50dvh;
+  bottom: 5dvh;
+}
+div#gamePage div.layer.back1 > div.frame.visual > div.decoration.hill03town {
+  background-image: url(Landscapes/back1-hillsCapital.svg);
+  width: 200dvh;
+  height: 50dvh;
+  bottom: 10dvh;
+}
+div#gamePage div.layer.back1 > div.frame.visual.destruction > div.decoration.hill03town {
+  background-image: url(Landscapes/back1-hillsCapitalDestruction.svg);
+  width: 200dvh;
+  height: 50dvh;
+  bottom: 10dvh;
+}
+div#gamePage div.layer.main > div.frame.visual {
+  aspect-ratio: 9 / 16;
+  background-image: url(Landscapes/ground01.svg);
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 500;
+}
+div#gamePage div.layer.main > div.frame.visual > div.decoration {
+  display: block;
+  content: "";
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+div#gamePage div.layer.main > div.frame.visual > div.decoration.tree01 {
+  background-image: url(Landscapes/tree01.svg);
+  width: 40dvh;
+  height: 60dvh;
+  bottom: 21dvh;
+  left: -7dvh;
+  transform: rotate(-3deg);
+}
+div#gamePage div.layer.main > div.frame.visual > div.decoration.tree01.alt {
+  transform: rotate(9deg) scaleX(-1);
+  bottom: 19dvh;
+  left: 8dvh;
+}
+div#gamePage div.layer.main > div.frame.visual > .decoration.bush01 {
+  background-image: url(Landscapes/bush01.svg);
+  width: 30dvh;
+  height: 20dvh;
+  bottom: 18dvh;
+  left: 14dvh;
+}
+div#gamePage div.layer.main > div.frame.visual.frame-lost,
+div#gamePage div.layer.main > div.frame.visual.frame-won {
+  background-image: url(Landscapes/ground04.svg);
+}
+div#gamePage div.layer.main > div.frame.visual > div.decoration.bush01.alt {
+  transform: scaleX(-1);
+  bottom: 17dvh;
+  left: 20dvh;
+}
+div#gamePage div.layer.main > div.frame.visual > div.healer,
+div#gamePage div.layer.main > div.frame.visual > div.player {
+  background-image: url(Characters/player.png);
+  width: 15dvh;
+  height: 20dvh;
+  bottom: 12dvh;
+  left: 30dvh;
+}
+div#gamePage div.layer.main > div.frame.visual > div.healer {
+  background-image: url(Characters/female002.png);
+}
+div#gamePage div.layer.main > div.frame.visual.frame-town01 {
+  background-image: url(Landscapes/ground04.svg);
+}
+div#gamePage div.layer.front > div.frame.visual {
+  aspect-ratio: 9 / 8;
+  pointer-events: none;
+  z-index: 1000;
+}
+div#gamePage div.layer.ui {
+  pointer-events: none;
+}
+div#gamePage div.layer.ui > div.frame.visual {
+  z-index: 9000;
+}
+div#gamePage div.layer.ui > div.frame.visual > div.innerFrame > * {
+  pointer-events: auto;
+}
+div#gamePage div.ui.bar {
+  z-index: 10000;
+}
+div#gamePage .Battle ul.allies,
+div#gamePage .Battle ul.enemies {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2dvh;
+}
+div#gamePage .Battle ul.allies > li,
+div#gamePage .Battle ul.enemies > li {
+  position: relative;
+}
+div#gamePage .Battle ul.enemies {
+  right: 20dvh;
+}
+div#gamePage .Battle ul.allies > li.ally:nth-child(3n+1) > button,
+div#gamePage .Battle ul.enemies > li.enemy:nth-child(3n+1) > button {
+  left: -4dvh;
+}
+div#gamePage .Battle ul.allies > li.ally:nth-child(3n) > button,
+div#gamePage .Battle ul.enemies > li.enemy:nth-child(3n) > button {
+  left: 5dvh;
+}
+div#gamePage .Battle ul.allies > li.ally > div.popup,
+div#gamePage .Battle ul.enemies > li.enemy > div.popup {
+  display: none;
+}
+div#gamePage .Battle ul.allies > li.ally > button,
+div#gamePage .Battle ul.enemies > li.enemy > button {
+  margin: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom center;
+  bottom: 0;
+  height: 20dvh;
+  width: 10dvh;
+}
+@layer baseGame {
+  ul.allies > li.ally > button {
+    background-image: url(Characters/female001.png);
+  }
+  .avatar {
+    background-image: url(Characters/female001.png);
+  }
+}
+div#gamePage .innerFrame.active.Battle ul.allies > li.ally > button {
+  animation: damageGiven 1s infinite;
+}
+div#gamePage .Battle ul.allies > li.ally:nth-child(3n+1) > button {
+  animation-delay: 0.05s;
+}
+div#gamePage .Battle ul.allies > li.ally:nth-child(3n) > button {
+  animation-delay: 0.025s;
+}
+div#gamePage .Battle ul.enemies > li.enemy:not(.isDead) > button {
+  background-image: url(Characters/goblin001.png);
+}
+div#gamePage .Battle ul.enemies > li.enemy:not(.isDead).goblin.variant > button {
+  background-image: url(Characters/goblin002.png);
+}
+div#gamePage .Battle ul.enemies > li.enemy:not(.isDead).knightGoblin > button {
+  background-image: url(Characters/goblin003knight.png);
+}
+div#gamePage .Battle ul.enemies > li.enemy:not(.isDead) > button {
+  animation: damageTaken 1s infinite;
+}
+div#gamePage .Battle ul.allies > li.ally.isDead > button,
+div#gamePage .Battle ul.enemies > li.enemy.isDead > button {
+  background-image: url(Characters/skull.png);
+  height: 8dvh;
+  width: 8dvh;
+}
+div#gamePage .Battle ul.enemies > li.enemy > button {
+  transform: scaleX(-1);
+}
+@keyframes damageGiven {
+  0% {
+    margin-left: 0;
+  }
+  60% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: 15dvh;
+  }
+}
+@keyframes damageTaken {
+  0% {
+    transform: translateY(-5px) scaleX(-1);
+  }
+  10% {
+    transform: translateY(0px) scaleX(-1);
+  }
+  60% {
+    transform: translateY(0px) scaleX(-1);
+  }
+  70% {
+    transform: translateY(-5px) scaleX(-1);
+  }
+  80% {
+    transform: translateY(0px) scaleX(-1);
+  }
+  90% {
+    transform: translateY(-5px) scaleX(-1);
+  }
+  100% {
+    transform: translateY(0px) scaleX(-1);
+  }
+}
+div#gamePage .player {
+  background-image: url(Characters/player.png);
+}
+div#gamePage .healer {
+  background-image: url(Characters/female002.png);
+}

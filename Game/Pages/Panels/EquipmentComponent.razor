@@ -1,0 +1,82 @@
+﻿<Microsoft.AspNetCore.Components.Sections.SectionContent SectionId="Game.UiSectionId">
+    <div id="EquipmentPanel" class="panel">
+        <header>
+            <button class="return" title="Return to game" @onclick="ClosePanel"></button>
+            <h1>Allies</h1>
+        </header>
+
+        <div class="row">
+            <ul class="allies">
+                @foreach (var ally in Model.Allies) {
+                    var selected = ally.Id == Ally?.Id;
+                    <li @key="ally.Id">
+                        <button @onclick="()=>Select(ally)" disabled="@selected" class="@(selected ? "active" : "")">@ally.Id</button>
+                    </li>
+                }
+            </ul>
+
+            <div class="avatar @Ally.Id">
+
+            </div>
+        </div>
+
+        <div id="AllyEquipment" class="sidepanel">
+            <header>
+                <h2>@Ally.Id</h2>
+            </header>
+            <ul class="stats">
+                @foreach (var attr in Ally.Attack) {
+                    <li @key="@attr.Key" class="@attr.Key"><p><span class="label">@attr.Key</span><span class="value">@attr.Value</span><span class="unit">dps</span></p></li>
+                }
+            </ul>
+            <ul class="equipmentList">
+                @foreach (var equipment in Ally.Equipment) {
+                    <li @key="equipment.Key" class="equipmentslot @(_equipmentSource == equipment.Key ? "active" : "inactive") @equipment.Key" @onclick="_=>Select(equipment.Key)">
+                        <span>@equipment.Key</span>
+                        @if (equipment.Value is not null) {
+                            <div class="equipment">
+                                @equipment.Value.Id
+                            </div>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div id="Inventory" class="sidepanel">
+            <header>
+                <h2>Inventory</h2>
+            </header>
+            <form @onsubmit="_=>{}" @onsubmit:preventDefault>
+                <input type="search" @bind="_equipmentFilter" placeholder="example: king's sword" maxlength="32" />
+                <button>Search</button>
+            </form>
+            @if (_equipmentSource is not null) {
+                <button class="badge" @onclick="()=>_equipmentSource = null">@_equipmentSource x</button>
+            }
+            <ul class="dropable equipmentList">
+                @if (_equipmentSource is not null) {
+                    <li @onclick="_=>Apply(null)">
+                        Remove x
+                    </li>
+                }
+                @{
+                    var equipmentQuery = Model.Equipment.AsEnumerable();
+                    if (_equipmentSource is not null) {
+                        equipmentQuery = equipmentQuery.Where(p => p.Type == _equipmentSource);
+                    }
+                    if (!String.IsNullOrWhiteSpace(_equipmentFilter)) {
+                        equipmentQuery = equipmentQuery.Where(p => p.Type.Contains(_equipmentFilter, StringComparison.OrdinalIgnoreCase) || p.Id.Contains(_equipmentFilter, StringComparison.OrdinalIgnoreCase));
+                    }
+                }
+                @foreach (var equipment in equipmentQuery) {
+                    <li class="equipmentSlot">
+                        <div class="equipment draggable" @onclick="_=>Apply(equipment)">
+                            @equipment.Id (@equipment.Type)
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</Microsoft.AspNetCore.Components.Sections.SectionContent>

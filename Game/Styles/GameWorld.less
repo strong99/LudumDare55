@@ -1,0 +1,372 @@
+
+div.frame.visual {
+    height: 100dvh;
+    position: absolute;
+    left: 50%;
+    transition: transform 1s linear;
+    border: none;
+    overflow: visible;
+    transform: translateX(calc(-50% + var(--relative-position) * 99.92%));
+}
+
+div.layer {
+    position: relative;
+}
+
+div.layer.back3 > div.frame.visual {
+    //border-left: 1px solid #fdd;//DEBUG
+    aspect-ratio: 9 / 44;
+    pointer-events: none;
+    z-index: 50;
+    
+    > div.decoration.mountain01,
+    > div.decoration.mountain02,
+    > div.decoration:first-child {
+        display: block;
+        background-position: bottom center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        position: absolute;
+        bottom: 25%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    > div.decoration.mountain01  {
+        background-image: url(../wwwroot/Landscapes/back3-mountain.svg);
+        width: 170vmin;
+        height: 40vmin;
+    }
+    
+    > div.decoration.mountain02 {
+        background-image: url(../wwwroot/Landscapes/back3-mountain2.svg);
+    }
+}
+
+div.layer.back2 > div.frame.visual {
+    aspect-ratio: 9 / 28;
+    pointer-events: none;
+    z-index: 125;
+    
+    > div.decoration.hill01,
+    > div.decoration.hill02,
+    > div.decoration:first-child {
+        display: block;
+        background-position: bottom center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        position: absolute;
+        bottom: 20dvh;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    > div.decoration.hill01 {
+        background-image: url(../wwwroot/Landscapes/back2-mountain.svg);
+        width: 85vmax;
+        height: 20vmax;
+    }
+
+    > div.decoration.hill02 {
+        background-image: url(../wwwroot/Landscapes/back2-mountain2.svg);
+        width: 85vmax;
+        height: 10vmax;
+    }
+}
+
+div.layer.back1 > div.frame.visual {
+    //border-left: 1px solid #f99;//DEBUG
+    aspect-ratio: 9 / 20;
+    pointer-events: none;
+    z-index: 250;
+    
+    > div.decoration.hill01,
+    > div.decoration.hill02,
+    > div.decoration:first-child {
+        display: block;
+        content: "";
+        background-position: bottom center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    > div.decoration.hill01 {
+        background-image: url(../wwwroot/Landscapes/back1-hills.svg);
+        width: 160dvh;
+        height: 20dvh;
+        bottom: 15dvh;
+    }
+
+    > div.decoration.hill02town {
+        background-image: url(../wwwroot/Landscapes/back1-hillstown.svg);
+        width: 200dvh;
+        height: 50dvh;
+        bottom: 5dvh;
+    }
+
+    > div.decoration.hill03town {
+        background-image: url(../wwwroot/Landscapes/back1-hillsCapital.svg);
+        width: 200dvh;
+        height: 50dvh;
+        bottom: 10dvh;
+    }
+
+    &.destruction > div.decoration.hill03town {
+        background-image: url(../wwwroot/Landscapes/back1-hillsCapitalDestruction.svg);
+        width: 200dvh;
+        height: 50dvh;
+        bottom: 10dvh;
+    }
+}
+
+div.layer.main > div.frame.visual {
+    //border: 1px solid red; //DEBUG
+    aspect-ratio: 9 / 16;
+    background-image: url(../wwwroot/Landscapes/ground01.svg);
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 500;
+
+    > div.decoration {
+        display: block;
+        content: "";
+        background-position: bottom center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    > div.decoration.tree01 {
+        background-image: url(../wwwroot/Landscapes/tree01.svg);
+        width: 40dvh;
+        height: 60dvh;
+        bottom: 21dvh;
+        left: -7dvh;
+        transform: rotate(-3deg);
+    }
+
+    > div.decoration.tree01.alt {
+        transform: rotate(9deg) scaleX(-1);
+        bottom: 19dvh;
+        left: 8dvh;
+    }
+
+    > .decoration.bush01 {
+        background-image: url(../wwwroot/Landscapes/bush01.svg);
+        width: 30dvh;
+        height: 20dvh;
+        bottom: 18dvh;
+        left: 14dvh;
+    }
+
+    &.frame-lost,
+    &.frame-won {
+        background-image: url(../wwwroot/Landscapes/ground04.svg);
+    }
+
+    > div.decoration.bush01.alt {
+        transform: scaleX(-1);
+        bottom: 17dvh;
+        left: 20dvh;
+    }
+
+    > div.healer,
+    > div.player {
+        background-image: url(../wwwroot/Characters/player.png);
+        width: 15dvh;
+        height: 20dvh;
+        bottom: 12dvh;
+        left: 30dvh;
+    }
+
+    > div.healer {
+        background-image: url(../wwwroot/Characters/female002.png);
+    }
+
+    &.frame-town01 {
+        background-image: url(../wwwroot/Landscapes/ground04.svg);
+    }
+}
+
+div.layer.front > div.frame.visual {
+    //border: 1px solid darkred;//DEBUG
+    aspect-ratio: 9 / 8;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+div.layer.ui {
+    pointer-events: none;
+
+    > div.frame.visual {
+        z-index: 9000;
+
+        > div.innerFrame {
+            > * {
+                pointer-events: auto;
+            }
+        }
+    }
+}
+
+div.ui.bar {
+    z-index: 10000;
+}
+
+.Battle {
+    ul.allies, ul.enemies {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2dvh;
+
+        > li {
+            position: relative;
+        }
+    }
+
+    ul.enemies {
+        right: 20dvh;
+    }
+
+    ul.allies > li.ally:nth-child(3n+1) > button,
+    ul.enemies > li.enemy:nth-child(3n+1) > button {
+        left: -4dvh;
+    }
+
+    ul.allies > li.ally:nth-child(3n) > button,
+    ul.enemies > li.enemy:nth-child(3n) > button {
+        left: 5dvh;
+    }
+
+    ul.allies > li.ally > div.popup,
+    ul.enemies > li.enemy > div.popup {
+        display: none;
+    }
+
+    ul.allies > li.ally > button,
+    ul.enemies > li.enemy > button {
+        margin: 0;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        position: absolute;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: bottom center;
+        bottom: 0;
+        height: 20dvh;
+        width: 10dvh;
+    }
+}
+
+@layer baseGame {
+    ul.allies > li.ally > button {
+        background-image: url(../wwwroot/Characters/female001.png);
+    }
+    .avatar {
+        background-image: url(../wwwroot/Characters/female001.png);
+    }
+}
+
+.innerFrame.active.Battle ul.allies > li.ally > button {
+    animation: damageGiven 1s infinite;
+}
+
+.Battle ul.allies > li.ally:nth-child(3n+1) > button {
+    animation-delay: 0.05s;
+}
+
+.Battle ul.allies > li.ally:nth-child(3n) > button {
+    animation-delay: 0.025s;
+}
+
+.Battle ul.enemies > li.enemy:not(.isDead) > button {
+    background-image: url(../wwwroot/Characters/goblin001.png);
+}
+
+.Battle ul.enemies > li.enemy:not(.isDead).goblin.variant > button {
+    background-image: url(../wwwroot/Characters/goblin002.png);
+}
+
+.Battle ul.enemies > li.enemy:not(.isDead).knightGoblin > button {
+    background-image: url(../wwwroot/Characters/goblin003knight.png);
+}
+
+.Battle ul.enemies > li.enemy:not(.isDead) > button {
+    animation: damageTaken 1s infinite;
+}
+
+
+.Battle ul.allies > li.ally.isDead > button,
+.Battle ul.enemies > li.enemy.isDead > button {
+    background-image: url(../wwwroot/Characters/skull.png);
+    height: 8dvh;
+    width: 8dvh;
+}
+
+.Battle ul.enemies > li.enemy > button {
+    transform: scaleX(-1);
+}
+
+@keyframes damageGiven {
+    0% {
+        margin-left: 0;
+    }
+
+    60% {
+        margin-left: 0;
+    }
+
+    100% {
+        margin-left: 15dvh;
+    }
+}
+
+@keyframes damageTaken {
+    0% {
+        transform: translateY(-5px) scaleX(-1);
+    }
+
+    10% {
+        transform: translateY(0px) scaleX(-1);
+    }
+
+    60% {
+        transform: translateY(0px) scaleX(-1);
+    }
+
+    70% {
+        transform: translateY(-5px) scaleX(-1);
+    }
+
+    80% {
+        transform: translateY(0px) scaleX(-1);
+    }
+
+    90% {
+        transform: translateY(-5px) scaleX(-1);
+    }
+
+    100% {
+        transform: translateY(0px) scaleX(-1);
+    }
+}
+
+.player {
+    background-image: url(../wwwroot/Characters/player.png);
+}
+
+.healer {
+    background-image: url(../wwwroot/Characters/female002.png);
+}

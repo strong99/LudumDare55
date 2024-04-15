@@ -1,0 +1,108 @@
+﻿@page "/play"
+@using LDJam55.Game.Models
+@using LDJam55.Game.Pages.Frames
+@using LDJam55.Game.Pages.Panels
+@using LDJam55.Game.Services
+
+<PageTitle>Play - The King's Summoning - Ludum Dare 55</PageTitle>
+<div id="gamePage" class="view game">
+    @{
+        var layer3 = OuterFrames.Where(f => f.Position > -20 && f.Position < 20).ToArray();
+        var layer2 = OuterFrames.Where(f => f.Position > -15 && f.Position < 15).ToArray();
+        var layer1 = OuterFrames.Where(f => f.Position > -10 && f.Position < 10).ToArray();
+        var layerMain = OuterFrames.Where(f => f.Position > -5 && f.Position < 5);
+        var layerFront = OuterFrames.Where(f => f.Position > -3 && f.Position < 3);
+    }
+    <div class="layer back3">
+        @foreach (var visibleFrame in layer3) {
+            var props = visibleFrame.Props.Where(p => p is not IsLayeredTag lt || lt.Layer == "back3").ToArray();
+            <LDJam55.Game.Pages.Renderer.FrameVisual @key="@($"back3-{visibleFrame.Id}")" Frame="visibleFrame">
+                @foreach (var prop in props) {
+                    <div class="decoration @prop.Id @(String.Join(' ', prop.Tags))"></div>
+                }
+            </LDJam55.Game.Pages.Renderer.FrameVisual>
+        }
+    </div>
+    <div class="layer back2">
+        @foreach (var visibleFrame in layer2) {
+            var props = visibleFrame.Props.Where(p => p is not IsLayeredTag lt || lt.Layer == "back2").ToArray();
+            <LDJam55.Game.Pages.Renderer.FrameVisual @key="@($"back2-{visibleFrame.Id}")" Frame="visibleFrame">
+                @foreach (var prop in props) {
+                    <div class="decoration @prop.Id @(String.Join(' ', prop.Tags))"></div>
+                }
+            </LDJam55.Game.Pages.Renderer.FrameVisual>
+        }
+    </div>
+    <div class="layer back1">
+        @foreach (var visibleFrame in layer1) {
+            var props = visibleFrame.Props.Where(p => p is not IsLayeredTag lt || lt.Layer == "back1").ToArray();
+            <LDJam55.Game.Pages.Renderer.FrameVisual @key="@($"back1-{visibleFrame.Id}")" Frame="visibleFrame">
+                @foreach (var prop in props) {
+                    <div class="decoration @prop.Id @(String.Join(' ', prop.Tags))"></div>
+                }
+            </LDJam55.Game.Pages.Renderer.FrameVisual>
+        }
+    </div>
+    <div class="layer main">
+        @foreach (var visibleFrame in layerMain) {
+            var props = visibleFrame.Props.Where(p => p is not IsLayeredTag lt || lt.Layer == "main").ToArray();
+            <LDJam55.Game.Pages.Renderer.FrameVisual @key="@($"main-{visibleFrame.Id}")" Frame="visibleFrame">
+                @foreach (var prop in props) {
+                    <div class="decoration @prop.Id @(String.Join(' ', prop.Tags))"></div>
+                }
+                @if (visibleFrame.Position == 0) {
+                    if (Panel is EquipmentPanel equipPanel) {
+                        <EquipmentComponent Model="equipPanel" ClosePanel="ClosePanel" />
+                    }
+                    else if (Line is BattleFrameAggegrate battle) {
+                        <BattleFrameComponent Frame="battle" />
+                    }
+                    else if (Line is StoryFrameAggegrate story) {
+                        <StoryFrameComponent Frame="story" />
+                    }
+                    else if (Line is ChoiceFrameAggegrate choice) {
+                        <ChoiceFrameComponent Frame="choice" />
+                    }
+                    else if (Line is CheckpointFrameAggegrate checkpoint) {
+                        <CheckpointFrameComponent Frame="checkpoint" ShowEquipment="ShowEquipment" />
+                    }
+                    else if (Line is not null) {
+                        var type = Line.GetType().Name;
+                        var id = Line.Path;
+                        <p>Unknown frame line type @type, @id</p>
+                    }
+                    else {
+                        <p>Frame not set</p>
+                    }
+                }
+            </LDJam55.Game.Pages.Renderer.FrameVisual>
+        }
+    </div>
+    <div class="layer front">
+        @foreach (var visibleFrame in layerFront) {
+            var props = visibleFrame.Props.Where(p => p is not IsLayeredTag lt || lt.Layer == "front").ToArray();
+            <LDJam55.Game.Pages.Renderer.FrameVisual @key="@($"front-{visibleFrame.Id}")" Frame="visibleFrame">
+                @foreach (var prop in props) {
+                    <div class="decoration @prop.Id @(String.Join(' ', prop.Tags))"></div>
+                }
+            </LDJam55.Game.Pages.Renderer.FrameVisual>
+        }
+    </div>
+    <div class="layer ui">
+        @if (Frame is not null) {
+            <div class="frame visual frame-@Frame.Id" style="--relative-position: 0">
+                <Microsoft.AspNetCore.Components.Sections.SectionOutlet SectionId="Game.UiSectionId" />
+            </div>
+        }
+    </div>
+
+    <div class="ui bar">
+        @if (Panel is not null) {
+            <button class="goToPlay" @onclick="ClosePanel" title="Back to world">&#9654;</button>
+        }
+        @if (Panel is not EquipmentPanel) {
+            <button class="goToEquipment" @onclick="ShowEquipment" title="Manage allies their equipment"></button>
+        }
+        <a class="goToMenu" href="./" title="Open the menu">&#9776;</a>
+    </div>
+</div>

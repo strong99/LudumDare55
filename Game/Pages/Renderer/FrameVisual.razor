@@ -1,0 +1,14 @@
+﻿@using LDJam55.Game.Models
+@using LDJam55.Game.Services
+@{
+    var tags = String.Join(' ', Frame.Tags.Where(t => t is not IsLayeredTag lt || lt.Layer == Layer).Select(t=>t.Id));
+}
+<div class="frame visual type-@Frame.Type frame-@Frame.Id @(Frame.Position < 0 ? "past" : "present") @(tags)" style="--relative-position: @Frame.Position" data-position="@Frame.Position">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter] public required String? Layer { get; set; }
+    [Parameter] public required OuterFrame Frame { get; set; }
+    [Parameter] public required RenderFragment ChildContent { get; set; }
+}

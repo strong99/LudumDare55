@@ -1,0 +1,23 @@
+﻿@page "/"
+@using LDJam55.Game.Pages.Renderer
+
+<PageTitle>Start - The King's Summoning - Ludum Dare 55</PageTitle>
+
+<div id="startPage" class="page start">
+    <Cover/>
+
+    <menu class="panel">
+        <header>
+            <h1>The King's summon</h1>
+        </header>
+        @if (CanContinue) {
+            <a class="@(IsBussy() ?"disabled" : "enabled")" href="play">Continue</a>
+        }
+        <button disabled="@IsBussy()" @onclick="StartNewGame">New</button>
+        @if (CanSave) {
+            <button class="@(IsBussy(nameof(Save)) ? "isWorking" : "")" disabled="@IsBussy()" @onclick="Save">Save</button>
+        }
+        <a href="settings">Settings</a>
+        <a href="about">About</a>
+    </menu>
+</div>

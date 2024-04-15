@@ -1,0 +1,20 @@
+﻿@using LDJam55.Game.Services;
+@implements IDisposable
+
+<div class="widget time">
+    <div class="mainbar">
+        @{
+            var percentage = Model.Duration / Model.MaxDuration;
+            var percentageCss = (Int32)Math.Floor(percentage * 100);
+
+            var seconds = Math.Max(0, Model.MaxDuration - Model.Duration) / 1000;
+            var sessionDurationMinutes = Math.Floor(seconds / 60f).ToString("00");
+            var sessionDurationSeconds = ((Int32)Math.Floor(seconds) % 60).ToString("00");
+
+            var input = $"<span class=\"time\"><span class=\"minutes\">{sessionDurationMinutes}</span><span class=\"seconds\">{sessionDurationSeconds}</span></span>";
+            var text = Summary is null ? input : String.Format(Summary, input);
+        }
+        <div class="barfilling" style="width: @percentageCss%"></div>
+        <p class="label current">@(new MarkupString(text))</p>
+    </div>
+</div>

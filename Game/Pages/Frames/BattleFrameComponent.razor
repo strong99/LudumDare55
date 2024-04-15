@@ -1,0 +1,76 @@
+﻿@using LDJam55.Game.Services
+@using LDJam55.Game.Pages.Frames.Widgets
+@{
+    var frameType = Frame.GetType().Name.Replace(nameof(FrameAggegrate), "");
+}
+<div class="innerFrame @Frame.Path @frameType @(Frame.CanGoToNext ? "ready" : "active")" id="Battle-@frameType">
+    <ul class="allies">
+        @foreach (var ally in Frame.Allies) {
+            <li @key="@ally.Id" class="ally @ally.Id">
+                <button class="actor @ally.Id"></button>
+                <div class="popup">
+                    <p>@ally.Id</p>
+                    <ul class="stats">
+                        @foreach (var attr in ally.Attack) {
+                            <li @key="@attr.Key" class="@attr.Key">
+                                <p>
+                                    <span class="label">@attr.Key</span><span class="value">@attr.Value</span><span class="unit">dps</span>
+                                </p>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </li>
+        }
+    </ul>
+
+    <ul class="enemies">
+        @foreach (var enemy in Frame.Enemies) {
+            <li @key="@enemy" class="enemy @(enemy.IsDead ? "isDead" : "isAlive") @enemy.Type @enemy.Variant">
+                <ul class="damage events">
+                    @foreach (var attr in DamageEvents) {
+                        if (attr.Source == enemy) {
+                            <li>@attr.Type: -@attr.Damage.ToString("0.00")</li>
+                        }
+                    }
+                </ul>
+                <button class="actor @enemy.Name"></button>
+                <div class="popup">
+                    <p>@enemy.Name</p>
+                    <ul class="stats">
+                        @foreach (var attr in enemy.Health) {
+                            <li @key="@attr.Key" class="@attr.Key"><p><span class="label">@attr.Key</span><span class="value">@attr.Value</span></p></li>
+                        }
+                    </ul>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+<Microsoft.AspNetCore.Components.Sections.SectionContent SectionId="Game.UiSectionId">
+    <div class="innerFrame @Frame.Path @frameType battle" id="Battle-@frameType">
+        <ProgressionWidget Model="Frame.ProgressionWidget" Selected="GoTo" />
+        <TimeWidget Model="Frame.TimeWidgetModel" Summary="Reach the capital in {0}" />
+
+        <h2>@Frame.Title</h2>
+
+        <ul class="special events">
+            @foreach (var sEvent in SpecialEvents) {
+                <li @key="sEvent" class="@(sEvent.GetType().Name)">
+                    @if (sEvent is EquipmentDropSpecialEvent edsEvent) {
+                        <p>Dropped @edsEvent.Equipment.Type</p>
+                    }
+                    else if (sEvent is EnemySpecialEvent esEvent) {
+                        <p>@esEvent.Source.Name: @esEvent.Type</p>
+                    }
+                    else {
+                        <p>Unknown event</p>
+                    }
+                </li>
+            }
+        </ul>
+
+        <button class="next" disabled="@(!Frame.CanGoToNext)" @onclick="Next">Next</button>
+    </div>
+</Microsoft.AspNetCore.Components.Sections.SectionContent>

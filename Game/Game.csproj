@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+        <RootNamespace>LDJam55.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Remove="compilerconfig.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+        <PackageReference Include="Blazored.SessionStorage" Version="2.4.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.4" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.4" PrivateAssets="all" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="compilerconfig.json" />
+        <None Include="Pages\About.razor" />
+        <None Include="Pages\Frames\BattleFrameComponent.razor" />
+        <None Include="Pages\Frames\CheckpointFrameComponent.razor" />
+        <None Include="Pages\Frames\ChoiceFrameComponent.razor" />
+        <None Include="Pages\Frames\StoryFrameComponent.razor" />
+        <None Include="Pages\Frames\Widgets\ProgressionWidget.razor" />
+        <None Include="Pages\Frames\Widgets\TimeWidget.razor" />
+        <None Include="Pages\Game.razor" />
+        <None Include="Pages\Panels\EquipmentComponent.razor" />
+        <None Include="Pages\Preview.razor" />
+        <None Include="Pages\Renderer\FrameVisual.razor" />
+        <None Include="Pages\Settings.razor" />
+        <None Include="Pages\Start.razor" />
+        <None Include="wwwroot\Characters\female001.png" />
+        <None Include="wwwroot\Characters\female002.png" />
+        <None Include="wwwroot\Characters\female003.png" />
+        <None Include="wwwroot\Characters\female004.png" />
+        <None Include="wwwroot\Characters\female005.png" />
+        <None Include="wwwroot\Characters\female006.png" />
+        <None Include="wwwroot\Characters\female007.png" />
+        <None Include="wwwroot\Characters\male001.png" />
+        <None Include="wwwroot\Characters\male002.png" />
+        <None Include="wwwroot\Characters\male003.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Pages\Panels\EquipmentPanels\" />
+    </ItemGroup>
+
+</Project>

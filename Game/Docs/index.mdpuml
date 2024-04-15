@@ -1,0 +1,118 @@
+# Ludum Dare 55
+
+The theme of this Ludum Dare event is <event name>. The theme was 
+announced on 2024/04/13 and the event will run from 2024/04/13 03:00 
+CEST to 2024/04/15 03:00 CEST.
+
+## Testing
+
+The project uses a home-made testing frame. A very basic set up allowing 
+to run a test method, listen to asserts, and print it to the console. 
+Start the [~/wwwroot/tests.html](../wwwroot/tests.html) file to run the tests. The tests can be either 
+synchronous or asynchronous.
+
+## Game concept
+
+> Theme: Summoning (present participle)
+> - order (someone) to be present:
+> "a waiter was summoned"
+> - authoritatively call on (someone) to be present as a defendant or witness in a law court:
+> "if the person summoned does not appear he may be arrested"
+> - urgently demand (help):
+> "she summoned medical assistance"
+> - call people to attend (a meeting):
+> "he summoned a meeting of head delegates"
+
+The Player is summoned by the King, to help the defence of the capital. However the player is far away 
+and has to travel the land. During his travels the player encounters various events. Enemies appear and
+oppurtunities arise to recruit fellow heroes. The player has to make choices and manage his resources to
+reach the capital in time.
+
+- The game is time limited. The player has to reach the capital within a certain amount of time.
+- The player manages the team, but does not micro manage fights.
+- Fights are automatic based on the team composition.
+- Equipement can be found and equiped on team members. This boosts certain stats.
+- The player can recruit new team members at certain points of the game.
+
+### Battle stats
+
+The following stats are used to determine how quick a battle is won:
+- Player team's Damage
+- Enemies team's Defence
+Damage and Defence are based on the following attributes:
+- slash
+- pierce
+- crush
+- burn
+If none of the Player's team stats are higher. The player retreats to the previous checkpoint.
+
+### Frames
+
+There are a set of scene types during the story:
+- Story: to tell a story, and make choices
+- Choice: to make a choice
+- Battle: to fight the enemy
+- Checkpoint: to save, change team, equipment and rest
+
+### Equipment
+
+The player's team can equip items. Each item had a set of attributes that it boosts. A team member 
+has base attributes. The equiped items boost these attributes. A team member has a certain set of 
+equipment slots with constraints for certain types.
+
+## Game Design
+
+The following is the Data model of the game:
+
+@startuml
+class World
+class Ally {
+	+name
+}
+class Enemy {
+    +name
+}
+class Attribute {
+	+name
+	+value
+}
+class Equipment
+class Frame
+class Battle
+class Checkpoint
+class Story
+class Choice
+class Session {
+	+frameId
+	+timestamp
+}
+
+World *--> Frame
+Story --|> Frame
+Choice --|> Frame
+Checkpoint --|> Frame
+Battle --|> Frame
+Battle *--> Enemy
+Battle *--> Equipment: Drops
+
+Enemy *--> Attribute
+Ally *--> Attribute
+Equipment *--> Attribute
+
+Session *--> Ally
+Ally *--> Equipment: Wears
+@enduml
+
+The following is the flow of a battle:
+
+@startuml
+start
+:calculate player attack;
+:calculate enemy defence;
+repeat
+:decrease enemy health;
+repeat while (health > 0) is (true)
+->false;
+:go to next frame;
+stop
+@enduml

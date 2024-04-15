@@ -1,0 +1,20 @@
+﻿@using LDJam55.Game.Services
+@{
+    var frameType = Frame.GetType().Name.Replace(nameof(FrameAggegrate), "");
+}
+<div class="innerFrame @Frame.Path @frameType actor-@(Frame.Actor)" id="Choice-@(Frame.Path)">
+</div>
+
+<Microsoft.AspNetCore.Components.Sections.SectionContent SectionId="Game.UiSectionId">
+    <div class="innerFrame @Frame.Path @frameType actor-@(Frame.Actor)" id="Choice-@(Frame.Path)">
+        <h3>Choice frame (@Frame.Path)</h3>
+
+        <p class="output"><span class="actor">@(Frame.Actor)</span><span class="message">@(Frame.Text)</span></p>
+
+        <menu>
+            @foreach (var option in Frame.Options) {
+                <button @onclick="()=>SelectOption(option.Id)">@option.Text</button>
+            }
+        </menu>
+    </div>
+</Microsoft.AspNetCore.Components.Sections.SectionContent>
